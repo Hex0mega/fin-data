@@ -1,7 +1,6 @@
 import os
 import yfinance as yf
 import pyodbc, struct
-import json
 from fastapi import FastAPI
 from azure import identity
 from fastapi.middleware.cors import CORSMiddleware
@@ -10,8 +9,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_methods=["GET", "PUT"],  # Allow specific methods
-
+    allow_methods=["GET", "PUT", "POST", "DELETE"],  # Allow specific methods
 )
 
 @app.get("/price/{ticker}")
@@ -40,7 +38,6 @@ def put_investments(ticker: str):
         price = dat.analyst_price_targets['current']
         query = f"UPDATE Investments SET LastPrice=? WHERE Ticker=?"
         params = (price, ticker)
-        print(query)
         cursor.execute(query, params)
         conn.commit()
         return price
