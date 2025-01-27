@@ -33,7 +33,7 @@ def get_conn():
     return conn
 
 @app.put("/investment/{ticker}")
-def get_investments(ticker: str):
+def put_investments(ticker: str):
     with get_conn() as conn:
         cursor = conn.cursor()
         dat = yf.Ticker(ticker)
