@@ -4,8 +4,15 @@ import pyodbc, struct
 import json
 from fastapi import FastAPI
 from azure import identity
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_methods=["GET", "PUT"],  # Allow specific methods
+
+)
 
 @app.get("/price/{ticker}")
 def get_investments(ticker: str):
