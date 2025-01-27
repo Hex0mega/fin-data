@@ -1,8 +1,10 @@
 import os
 import yfinance as yf
 import pyodbc, struct
+import json
 from fastapi import FastAPI
 from azure import identity
+
 
 app = FastAPI()
 
@@ -22,7 +24,8 @@ app = FastAPI()
 def get_investments(ticker: str):
         dat = yf.Ticker(ticker)
         price = dat.analyst_price_targets['current']
-        return price
+        data = {"price":price}
+        return json.dumps(data)
 
 # @app.put("/investment/{ticker}")
 # def get_investments(ticker: str):
