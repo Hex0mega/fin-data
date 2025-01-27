@@ -6,6 +6,7 @@ from azure import identity
 
 #connect to Azure SQL db
 connection_string = os.getenv("AZURE_SQL_CONNECTIONSTRING")
+print(connection_string)
 
 app = FastAPI()
 
