@@ -1,5 +1,4 @@
 import os
-import sys
 import yfinance as yf
 import pyodbc, struct
 from fastapi import FastAPI
