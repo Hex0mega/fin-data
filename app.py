@@ -7,10 +7,11 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_methods=["GET", "PUT", "POST", "DELETE"],  # Allow specific methods
-# )
+app.add_middleware(
+    CORSMiddleware,
+    allow_methods=["GET", "PUT", "POST", "DELETE"],  # Allow specific methods
+    allow_origins=["http://localhost:3000"]
+)
 
 @app.get("/")
 def get_default():
