@@ -7,10 +7,14 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_methods=["GET", "PUT", "POST", "DELETE"],  # Allow specific methods
-)
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_methods=["GET", "PUT", "POST", "DELETE"],  # Allow specific methods
+# )
+
+@app.get("/")
+def get_default():
+    return "Welcome to YFinance API. Try /price/{ticker}"
 
 @app.get("/price/{ticker}")
 def get_investments(ticker: str):
